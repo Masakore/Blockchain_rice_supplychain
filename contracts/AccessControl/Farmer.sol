@@ -6,7 +6,6 @@ contract Farmer is AccessControl {
 
 	// Define 2 events, one for Adding, and other for Removing
 	event FarmerAdded(address indexed account);
-
 	event FarmerRemoved(address indexed account);
 
 	// Define a struct 'farmers' by inheriting from 'Roles' library, struct Role
@@ -49,4 +48,5 @@ emit FarmerAdded(account);
 function _removeFarmer(address account) internal {
 farmers.remove(account);
 emit FarmerRemoved(account);
+}
 }
