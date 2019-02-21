@@ -2,7 +2,7 @@ pragma solidity ^0.4.24;
 
 import "./Roles.sol";
 
-contract Distributor is AccessControl {
+contract Distributor {
   using Roles for Roles.Role;
 
   // Define 2 events, one for Adding, and other for Removing

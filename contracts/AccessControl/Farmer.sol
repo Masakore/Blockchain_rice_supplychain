@@ -1,5 +1,6 @@
 pragma solidity ^0.4.24;
 
+import "./Roles.sol";
 
 contract Farmer is AccessControl {
 	using Roles for Roles.Role;
