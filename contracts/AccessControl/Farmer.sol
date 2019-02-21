@@ -2,15 +2,15 @@ pragma solidity ^0.4.24;
 
 
 contract Farmer is AccessControl {
-    using Roles for Roles.Role;
+	using Roles for Roles.Role;
 
-    // Define 2 events, one for Adding, and other for Removing
-    event FarmerAdded(address indexed account);
+	// Define 2 events, one for Adding, and other for Removing
+	event FarmerAdded(address indexed account);
 
-    event FarmerRemoved(address indexed account);
+	event FarmerRemoved(address indexed account);
 
-    // Define a struct 'farmers' by inheriting from 'Roles' library, struct Role
-    Roles.Role private farmers;
+	// Define a struct 'farmers' by inheriting from 'Roles' library, struct Role
+	Roles.Role private farmers;
 
 
 // In the constructor make the address that deploys this contract the 1st farmer
@@ -49,5 +49,4 @@ emit FarmerAdded(account);
 function _removeFarmer(address account) internal {
 farmers.remove(account);
 emit FarmerRemoved(account);
-
 }
