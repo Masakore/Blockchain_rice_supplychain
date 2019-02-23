@@ -231,34 +231,4 @@ contract Base {
 		emit Purchased(_upc);
 	}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
