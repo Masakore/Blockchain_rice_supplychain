@@ -1,6 +1,7 @@
 pragma solidity ^0.4.24;
 
-contract Base {
+//TODO update diagrams later
+contract SupplyChain {
 
   address owner;
 
