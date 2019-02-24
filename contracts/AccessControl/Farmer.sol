@@ -2,7 +2,7 @@ pragma solidity ^0.4.24;
 
 import "./Roles.sol";
 
-contract Farmer is AccessControl {
+contract Farmer {
 	using Roles for Roles.Role;
 
 	// Define 2 events, one for Adding, and other for Removing
