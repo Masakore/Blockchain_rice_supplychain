@@ -162,7 +162,7 @@ contract SupplyChain is Ownable, Farmer, Inspector, Distributor, Retailer, Consu
 
   function processItem(uint _upc) public
   harvested(_upc)
-  verifyCaller(items[_upc].originFarmerID)
+  onlyFarmer(items[_upc].originFarmerID)
   {
     items[_upc].itemState = State.Processed;
     emit ProcessedItem(_upc);
@@ -170,7 +170,7 @@ contract SupplyChain is Ownable, Farmer, Inspector, Distributor, Retailer, Consu
 
   function inspectItem(uint _upc) public
   processed(_upc)
-  verifyCaller(items[_upc].inspectorID) public
+  onlyInspector(items[_upc].inspectorID) public
   {
     items[_upc].inspectorID = _inspectorID;
     items[_upc].itemState = State.Inspected;
@@ -179,7 +179,7 @@ contract SupplyChain is Ownable, Farmer, Inspector, Distributor, Retailer, Consu
 
 	function packItem(uint _upc) public
 	inspected(_upc)
-	verifyCaller(items[_upc].originFarmerID) public
+	onlyFarmer(items[_upc].originFarmerID) public
 	{
 		items[_upc].itemState = State.Packed;
 		emit Packed(_upc);
@@ -187,7 +187,7 @@ contract SupplyChain is Ownable, Farmer, Inspector, Distributor, Retailer, Consu
 
 	function sellItem(uint _upc, uint _price) public
 	packed(_upc)
-	verifyCaller(items[_upc].originFarmerID)
+	onlyFarmer(items[_upc].originFarmerID)
 	{
     items[_upc].productPrice = _price;
 		items[_upc].itemState = State.ForSale;
@@ -207,12 +207,11 @@ contract SupplyChain is Ownable, Farmer, Inspector, Distributor, Retailer, Consu
 
   function shipItem(uint _upc) public
   sold(_upc)
-  verifyCaller(items[_upc].distributorID)
+  onlyDistributor(items[_upc].distributorID)
   {
     items[_upc].itemState = State.Shipped;
     emit Shipped(_upc);
   }
-
 
 	function receiveItem(uint _upc) public
 	shipped(_upc)
