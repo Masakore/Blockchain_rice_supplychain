@@ -19,9 +19,10 @@ contract('SupplyChain', function (accounts) {
   const productNotes = "Best beans for Espresso";
   const productPrice = web3.toWei(1, "ether");
   var itemState = 0;
-  const distributorID = accounts[2];
-  const retailerID = accounts[3];
-  const consumerID = accounts[4];
+  const inspectorID = accounts[2];
+  const distributorID = accounts[3];
+  const retailerID = accounts[4];
+  const consumerID = accounts[5];
   const emptyAddress = '0x00000000000000000000000000000000000000';
 
   ///Available Accounts
@@ -40,9 +41,10 @@ contract('SupplyChain', function (accounts) {
   console.log("ganache-cli accounts used here...");
   console.log("Contract Owner: accounts[0] ", accounts[0]);
   console.log("Farmer: accounts[1] ", accounts[1]);
-  console.log("Distributor: accounts[2] ", accounts[2]);
-  console.log("Retailer: accounts[3] ", accounts[3]);
-  console.log("Consumer: accounts[4] ", accounts[4]);
+  console.log("Inspector: accounts[2] ", accounts[2]);
+  console.log("Distributor: accounts[3] ", accounts[3]);
+  console.log("Retailer: accounts[4] ", accounts[4]);
+  console.log("Consumer: accounts[5] ", accounts[5]);
 
   // 1st Test
   it("Testing smart contract function harvestItem() that allows a farmer to harvest coffee", async() => {
