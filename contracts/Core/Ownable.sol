@@ -1,7 +1,7 @@
 pragma solidity ^0.4.24;
 
 
-contract Ownable is SupplyChain {
+contract Ownable {
 	address private origOwner;
 
 	event TransferOwnership(address indexed oldOwner, address indexed newOnwer);
