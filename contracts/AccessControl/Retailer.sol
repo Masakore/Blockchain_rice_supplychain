@@ -21,13 +21,12 @@ contract RetailerRole {
 
 	// Define a modifier that checks to see if msg.sender has the appropriate role
 	modifier onlyRetailer() {
-     require(isRetailer(msg.sender))
-		_;
+     if (isRetailer(msg.sender)) _;
 	}
 
 	// Define a function 'isRetailer' to check this role
 	function isRetailer(address account) public view returns (bool) {
-    return retailer.has(account);
+    return retailers.has(account);
 	}
 
 	// Define a function 'addRetailer' that adds this role

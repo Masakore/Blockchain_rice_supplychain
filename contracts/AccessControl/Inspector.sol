@@ -19,13 +19,12 @@ contract Inspector {
 
   // Define a modifier that checks to see if msg.sender has the appropriate role
   modifier onlyInspector() {
-    require(isInspector(msg.sender))
-    _;
+    if (isInspector(msg.sender)) _;
   }
 
   // Define a function 'isInspector' to check this role
   function isInspector(address account) public view returns (bool) {
-    return inspector.has(account);
+    return inspectors.has(account);
   }
 
   // Define a function 'addInspector' that adds this role

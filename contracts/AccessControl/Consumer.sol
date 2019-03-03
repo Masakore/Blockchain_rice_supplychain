@@ -19,13 +19,14 @@ contract Consumer {
 
   // Define a modifier that checks to see if msg.sender has the appropriate role
   modifier onlyConsumer() {
-    require(isConsumer(msg.sender))
-    _;
+//    require(isConsumer(msg.sender))
+//    _;
+    if(isConsumer(msg.sender)) _;
   }
 
   // Define a function 'isConsumer' to check this role
   function isConsumer(address account) public view returns (bool) {
-    return consumer.has(account);
+    return consumers.has(account);
   }
 
   // Define a function 'addConsumer' that adds this role
