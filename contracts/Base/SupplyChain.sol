@@ -61,16 +61,6 @@ contract SupplyChain is Ownable, Farmer, Inspector, Distributor, Retailer, Consu
   event Received(uint upc);
   event Purchased(uint upc);
 
-//  modifier onlyOwner() {
-//    require(msg.sender == owner);
-//    _;
-//  }
-
-//  modifier verifyCaller(address _address) {
-//    require(msg.sender == _address);
-//    _;
-//  }
-
   modifier paidEnough(uint _price) {
     require(msg.value >= _price);
     _;
@@ -124,15 +114,14 @@ contract SupplyChain is Ownable, Farmer, Inspector, Distributor, Retailer, Consu
   }
 
   constructor() public payable {
-    owner = msg.sender;
+    new Onwable(msg.sender);
     sku = 1;
     upc = 1;
   }
 
   function kill() public
-  onlyOwner()
+  isOnwer()
   {
-    //TODO research this method later
     selfdestruct(owner)
   }
 
@@ -143,7 +132,7 @@ contract SupplyChain is Ownable, Farmer, Inspector, Distributor, Retailer, Consu
       {
         sku: sku,
         upc: _upc,
-        ownerID: owner,
+        ownerID: owner(),
         originFarmerID: _originFarmerID,
         originFarmName: _originFarmName,
         originFarmLatitude: _originFarmLatitude,
@@ -225,7 +214,8 @@ contract SupplyChain is Ownable, Farmer, Inspector, Distributor, Retailer, Consu
 	function purchaseItem(uint _upc) public
 	received(_upc)
 	{
-		items[_upc].owner = msg.sender;
+		transferOwnership(msg.sender);
+		items[_upc].owner = owner();
 		items[_upc].consumerID = msg.sender;
 		items[_upc].itemState = State.Purchased;
 		emit Purchased(_upc);
