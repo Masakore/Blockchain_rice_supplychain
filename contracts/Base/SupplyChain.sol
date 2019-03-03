@@ -1,7 +1,7 @@
 pragma solidity ^0.4.24;
 
 //TODO update diagrams later
-contract SupplyChain {
+contract SupplyChain is Ownable, Farmer, Inspector, Distributor, Retailer, Consumer {
 
   address owner;
 
@@ -61,15 +61,15 @@ contract SupplyChain {
   event Received(uint upc);
   event Purchased(uint upc);
 
-  modifier onlyOwner() {
-    require(msg.sender == owner);
-    _;
-  }
+//  modifier onlyOwner() {
+//    require(msg.sender == owner);
+//    _;
+//  }
 
-  modifier verifyCaller(address _address) {
-    require(msg.sender == _address);
-    _;
-  }
+//  modifier verifyCaller(address _address) {
+//    require(msg.sender == _address);
+//    _;
+//  }
 
   modifier paidEnough(uint _price) {
     require(msg.value >= _price);
@@ -150,7 +150,7 @@ contract SupplyChain {
         originFarmLongitude: _originFarmLongitude,
         productID: _upc + sku,
         productNotes: _productNotes,
-        itemState: State.Harvested
+        itemState: defaultState,
         inspectorID: _inspectorID
       }
     );
