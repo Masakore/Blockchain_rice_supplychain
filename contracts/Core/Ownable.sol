@@ -35,7 +35,7 @@ contract Ownable {
 
 	function _transferOwnership(address newOwner) internal {
 		require(newOwner != address(0));
-		emit TranferOwnership(origOwner, newOwner);
+		emit TransferOwnership(origOwner, newOwner);
 		origOwner = newOwner;
 	}
 }
