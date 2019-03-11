@@ -139,7 +139,6 @@ contract SupplyChain is Farmer, Inspector, Distributor, Retailer, Consumer, Owna
   }
 
   constructor() public payable {
-    transferOwnership(msg.sender);
     sku = 1;
     upc = 1;
   }
@@ -162,7 +161,7 @@ contract SupplyChain is Farmer, Inspector, Distributor, Retailer, Consumer, Owna
       {
         sku: sku,
         upc: _upc,
-        ownerID: getOwner(),
+        ownerID: _originFarmerID,
         originFarmerID: _originFarmerID,
         originFarmerName: _originFarmerName,
         originFarmInformation: _originFarmInformation,
@@ -179,6 +178,7 @@ contract SupplyChain is Farmer, Inspector, Distributor, Retailer, Consumer, Owna
       }
     );
 
+    transferOwnership(_originFarmerID);
     items[_upc] = item;
     sku = sku + 1;
     emit Harvested(_upc);
