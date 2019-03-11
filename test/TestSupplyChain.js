@@ -47,7 +47,7 @@ contract('SupplyChain', function (accounts) {
   console.log("Consumer: accounts[5] ", accounts[5]);
 
   // 1st Test
-  it("Testing smart contract function harvestItem() that allows a farmer to harvest coffee", async() => {
+  it("Testing smart contract function harvestItem() that allows a farmer to harvest rice", async() => {
     const supplyChain = await SupplyChain.deployed();
 
     // Declare and Initialize a variable for event
@@ -80,27 +80,34 @@ contract('SupplyChain', function (accounts) {
   })
 
   // 2nd Test
-  it("Testing smart contract function processItem() that allows a farmer to process coffee", async() => {
-      const supplyChain = await SupplyChain.deployed();
+  it("Testing smart contract function processItem() that allows a farmer to process rice", async() => {
+    const supplyChain = await SupplyChain.deployed();
 
-  // Declare and Initialize a variable for event
+    // Declare and Initialize a variable for event
+    var eventEmitted = false;
 
+    // Watch the emitted event Processed()
+    var event = supplyChain.Processed();
+    await event.watch((err, res) => {
+      eventEmitted = true
+    })
 
-  // Watch the emitted event Processed()
+    // Mark an item as Processed by calling function processtItem()
+    supplyChain.processItem(upc);
 
+    // Retrieve the just now saved item from blockchain by calling function fetchItem()
+    const resultBufferOne = await supplyChain.fetchItemBufferOne.call(upc);
+    const resultBufferTwo = await supplyChain.fetchItemBufferTwo.call(upc);
 
-  // Mark an item as Processed by calling function processtItem()
-
-
-  // Retrieve the just now saved item from blockchain by calling function fetchItem()
-
-
-  // Verify the result set
-
+    // Verify the result set
+    assert.equal(resultBufferOne[0], sku, 'Error: Invalid item SKU');
+    assert.equal(resultBufferOne[1], upc, 'Error: Invalid item UPC');
+    assert.equal(resultBufferTwo[5], 1, 'Error: Invalid item State');
+    assert.equal(eventEmitted, true, 'Invalid event emitted')
   })
 
   // 3rd Test
-  it("Testing smart contract function packItem() that allows a farmer to pack coffee", async() => {
+  it("Testing smart contract function packItem() that allows a farmer to pack rice", async() => {
       const supplyChain = await SupplyChain.deployed();
 
   // Declare and Initialize a variable for event
@@ -120,7 +127,7 @@ contract('SupplyChain', function (accounts) {
   })
 
   // 4th Test
-  it("Testing smart contract function sellItem() that allows a farmer to sell coffee", async() => {
+  it("Testing smart contract function sellItem() that allows a farmer to sell rice", async() => {
       const supplyChain = await SupplyChain.deployed();
 
   // Declare and Initialize a variable for event
@@ -140,7 +147,7 @@ contract('SupplyChain', function (accounts) {
   })
 
   // 5th Test
-  it("Testing smart contract function buyItem() that allows a distributor to buy coffee", async() => {
+  it("Testing smart contract function buyItem() that allows a distributor to buy rice", async() => {
       const supplyChain = await SupplyChain.deployed();
 
   // Declare and Initialize a variable for event
@@ -161,7 +168,7 @@ contract('SupplyChain', function (accounts) {
   })
 
   // 6th Test
-  it("Testing smart contract function shipItem() that allows a distributor to ship coffee", async() => {
+  it("Testing smart contract function shipItem() that allows a distributor to ship rice", async() => {
       const supplyChain = await SupplyChain.deployed();
 
   // Declare and Initialize a variable for event
@@ -181,7 +188,7 @@ contract('SupplyChain', function (accounts) {
   })
 
   // 7th Test
-  it("Testing smart contract function receiveItem() that allows a retailer to mark coffee received", async() => {
+  it("Testing smart contract function receiveItem() that allows a retailer to mark rice received", async() => {
       const supplyChain = await SupplyChain.deployed();
 
   // Declare and Initialize a variable for event
@@ -201,7 +208,7 @@ contract('SupplyChain', function (accounts) {
   })
 
   // 8th Test
-  it("Testing smart contract function purchaseItem() that allows a consumer to purchase coffee", async() => {
+  it("Testing smart contract function purchaseItem() that allows a consumer to purchase rice", async() => {
       const supplyChain = await SupplyChain.deployed();
 
   // Declare and Initialize a variable for event
