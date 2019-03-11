@@ -133,44 +133,60 @@ contract('SupplyChain', function (accounts) {
     assert.equal(eventEmitted, true, 'Invalid event emitted')
   })
 
-  // 4rd Test
+  // 4th Test
   it("Testing smart contract function packItem() that allows a farmer to pack rice", async() => {
-      const supplyChain = await SupplyChain.deployed();
+    const supplyChain = await SupplyChain.deployed();
 
-  // Declare and Initialize a variable for event
+    // Declare and Initialize a variable for event
+    var eventEmitted = false;
 
+    // Watch the emitted event Processed()
+    var event = supplyChain.Packed();
+    await event.watch((err, res) => {
+      eventEmitted = true
+    })
 
-  // Watch the emitted event Packed()
+    // Mark an item as Processed by calling function processtItem()
+    supplyChain.packItem(upc);
 
+    // Retrieve the just now saved item from blockchain by calling function fetchItem()
+    const resultBufferOne = await supplyChain.fetchItemBufferOne.call(upc);
+    const resultBufferTwo = await supplyChain.fetchItemBufferTwo.call(upc);
 
-  // Mark an item as Packed by calling function packItem()
-
-
-  // Retrieve the just now saved item from blockchain by calling function fetchItem()
-
-
-  // Verify the result set
-
+    // Verify the result set
+    assert.equal(resultBufferOne[0], sku, 'Error: Invalid item SKU');
+    assert.equal(resultBufferOne[1], upc, 'Error: Invalid item UPC');
+    assert.equal(resultBufferTwo[5], 3, 'Error: Invalid item State');
+    assert.equal(eventEmitted, true, 'Invalid event emitted')
   })
 
-  // 4th Test
+  // 5th Test
   it("Testing smart contract function sellItem() that allows a farmer to sell rice", async() => {
-      const supplyChain = await SupplyChain.deployed();
+    const supplyChain = await SupplyChain.deployed();
 
-  // Declare and Initialize a variable for event
+    // Declare and Initialize a variable for event
+    const price = 1000;
+    var eventEmitted = false;
 
+    // Watch the emitted event Processed()
+    var event = supplyChain.ForSale();
+    await event.watch((err, res) => {
+      eventEmitted = true
+    })
 
-  // Watch the emitted event ForSale()
+    // Mark an item as Processed by calling function processtItem()
+    supplyChain.sellItem(upc, price);
 
+    // Retrieve the just now saved item from blockchain by calling function fetchItem()
+    const resultBufferOne = await supplyChain.fetchItemBufferOne.call(upc);
+    const resultBufferTwo = await supplyChain.fetchItemBufferTwo.call(upc);
 
-  // Mark an item as ForSale by calling function sellItem()
-
-
-  // Retrieve the just now saved item from blockchain by calling function fetchItem()
-
-
-  // Verify the result set
-
+    // Verify the result set
+    assert.equal(resultBufferOne[0], sku, 'Error: Invalid item SKU');
+    assert.equal(resultBufferOne[1], upc, 'Error: Invalid item UPC');
+    assert.equal(resultBufferTwo[4], price, 'Error: Invalid item price');
+    assert.equal(resultBufferTwo[5], 4, 'Error: Invalid item State');
+    assert.equal(eventEmitted, true, 'Invalid event emitted')
   })
 
   // 5th Test
