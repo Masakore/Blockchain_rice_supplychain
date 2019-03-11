@@ -107,6 +107,33 @@ contract('SupplyChain', function (accounts) {
   })
 
   // 3rd Test
+  it("Testing smart contract function inspectItem() that allows a farmer to pack rice", async() => {
+    const supplyChain = await SupplyChain.deployed();
+
+    // Declare and Initialize a variable for event
+    var eventEmitted = false;
+
+    // Watch the emitted event Processed()
+    var event = supplyChain.Inspected();
+    await event.watch((err, res) => {
+      eventEmitted = true
+    })
+
+    // Mark an item as Processed by calling function processtItem()
+    supplyChain.inspectItem(upc);
+
+    // Retrieve the just now saved item from blockchain by calling function fetchItem()
+    const resultBufferOne = await supplyChain.fetchItemBufferOne.call(upc);
+    const resultBufferTwo = await supplyChain.fetchItemBufferTwo.call(upc);
+
+    // Verify the result set
+    assert.equal(resultBufferOne[0], sku, 'Error: Invalid item SKU');
+    assert.equal(resultBufferOne[1], upc, 'Error: Invalid item UPC');
+    assert.equal(resultBufferTwo[5], 2, 'Error: Invalid item State');
+    assert.equal(eventEmitted, true, 'Invalid event emitted')
+  })
+
+  // 4rd Test
   it("Testing smart contract function packItem() that allows a farmer to pack rice", async() => {
       const supplyChain = await SupplyChain.deployed();
 
