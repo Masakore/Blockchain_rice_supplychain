@@ -218,7 +218,7 @@ contract SupplyChain is Farmer, Inspector, Distributor, Retailer, Consumer, Owna
 		emit ForSale(_upc);
 	}
 
-	function buyItem(uint _upc) public
+	function buyItem(uint _upc) public payable
 	forSale(_upc)
   paidEnough(items[_upc].productPrice)
   checkValue(_upc)
