@@ -144,27 +144,30 @@ App = {
                 return await App.processItem(event);
                 break;
             case 3:
-                return await App.packItem(event);
+                return await App.inspectItem(event);
                 break;
             case 4:
-                return await App.sellItem(event);
+                return await App.packItem(event);
                 break;
             case 5:
-                return await App.buyItem(event);
+                return await App.sellItem(event);
                 break;
             case 6:
-                return await App.shipItem(event);
+                return await App.buyItem(event);
                 break;
             case 7:
-                return await App.receiveItem(event);
+                return await App.shipItem(event);
                 break;
             case 8:
-                return await App.purchaseItem(event);
+                return await App.receiveItem(event);
                 break;
             case 9:
-                return await App.fetchItemBufferOne(event);
+                return await App.purchaseItem(event);
                 break;
             case 10:
+                return await App.fetchItemBufferOne(event);
+                break;
+            case 11:
                 return await App.fetchItemBufferTwo(event);
                 break;
         }
@@ -201,6 +204,20 @@ App = {
         }).then(function (result) {
             $("#ftc-item").text(result);
             console.log('processItem', result);
+        }).catch(function (err) {
+            console.log(err.message);
+        });
+    },
+
+    inspectItem: function (event) {
+        event.preventDefault();
+        var processId = parseInt($(event.target).data('id'));
+
+        App.contracts.SupplyChain.deployed().then(function (instance) {
+            return instance.inspectItem(App.upc, {from: App.metamaskAccountID});
+        }).then(function (result) {
+            $("#ftc-item").text(result);
+            console.log('inspectItem', result);
         }).catch(function (err) {
             console.log(err.message);
         });
