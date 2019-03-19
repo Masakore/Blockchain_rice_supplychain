@@ -189,7 +189,7 @@ contract('SupplyChain', function (accounts) {
     assert.equal(eventEmitted, true, 'Invalid event emitted')
   })
 
-  // 5th Test
+  // 6th Test
   it("Testing smart contract function buyItem() that allows a distributor to buy rice", async() => {
     const supplyChain = await SupplyChain.deployed();
 
@@ -218,7 +218,7 @@ contract('SupplyChain', function (accounts) {
     assert.equal(eventEmitted, true, 'Invalid event emitted')
   })
 
-  // 6th Test
+  // 7th Test
   it("Testing smart contract function shipItem() that allows a distributor to ship rice", async() => {
     const supplyChain = await SupplyChain.deployed();
 
@@ -245,7 +245,7 @@ contract('SupplyChain', function (accounts) {
     assert.equal(eventEmitted, true, 'Invalid event emitted')
   })
 
-  // 7th Test
+  // 8th Test
   it("Testing smart contract function receiveItem() that allows a retailer to mark rice received", async() => {
     const supplyChain = await SupplyChain.deployed();
 
@@ -273,7 +273,7 @@ contract('SupplyChain', function (accounts) {
     assert.equal(eventEmitted, true, 'Invalid event emitted')
   })
 
-  // 8th Test
+  // 9th Test
   it("Testing smart contract function purchaseItem() that allows a consumer to purchase rice", async() => {
     const supplyChain = await SupplyChain.deployed();
 
@@ -302,7 +302,7 @@ contract('SupplyChain', function (accounts) {
     assert.equal(eventEmitted, true, 'Invalid event emitted')
   })
 
-  // 9th Test
+  // 10th Test
   it("Testing smart contract function fetchItemBufferOne() that allows anyone to fetch item details from blockchain", async() => {
     const supplyChain = await SupplyChain.deployed();
     const resultBufferOne = await supplyChain.fetchItemBufferOne.call(upc);
@@ -317,7 +317,7 @@ contract('SupplyChain', function (accounts) {
     assert.equal(resultBufferOne[7], originFarmLongitude, 'Error: Missing or Invalid originFarmLongitude');
   })
 
-  // 10th Test
+  // 11th Test
   it("Testing smart contract function fetchItemBufferTwo() that allows anyone to fetch item details from blockchain", async() => {
     const supplyChain = await SupplyChain.deployed();
     const resultBufferTwo = await supplyChain.fetchItemBufferTwo.call(upc);
