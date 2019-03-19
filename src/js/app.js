@@ -69,7 +69,7 @@ App = {
             App.web3Provider = window.ethereum;
             try {
                 // Request account access
-                await indow.ethereum.enable();
+                await window.ethereum.enable();
             } catch (error) {
                 // User denied account access...
                 console.error("User denied account access")
