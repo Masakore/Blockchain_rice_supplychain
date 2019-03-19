@@ -1,0 +1,23 @@
+Farmer.sol
+transaction ID: 0x6d62ce8fcf5a9a7f0c1202c53b740fb7ec8d6e5e8840aa68f6566d7b66c9d4f4
+contract address: 0x7d6fe5c826058e7f4a7c214bf53ea58f63b1af50
+
+Inspector.sol
+transaction ID: 0x41c6342c31fe2c969b8298aaeca21712685d1ec42a0e6394f891cf24c7021f43
+contract address: 0xeb2ddd84402b6c9959e6ef5e7bfea4ac41cac03a
+
+Distributor.sol
+transaction ID: 0x57bd8e4d26a714057c871e7ba9c1a1e807b75aa27765aade909b7e5bf0d47cd7
+contract address: 0x597a0e46b890add811159199cc388c1aa31ac37f
+
+Retailer.sol
+transaction ID: 0xba660989e11ed027fff2f1a3de71f9ba38e556421875ca770a93b25e300fbc1c
+contract address: 0x6c57c47481377b521283739d19e0ecd073970bb3
+
+Consumer.sol
+transaction ID: 0x6b9b1bc370f0d63957c6e8b83983b08dc2799004da53cb3e499e15e69b262a97
+contract address: 0x66bbd519df51b5dc736c3a045f6fc9cc9a8ceec3
+
+SupplyChain.sol
+transaction ID: 0x2a37eed58316834528f9d052353b9ec4a38b629674da384d3eb786bb88d2ae06
+contract address: 0x9959d3e76a492e73892545616894de6965fbe145
