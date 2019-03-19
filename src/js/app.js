@@ -18,14 +18,14 @@ App = {
     productNotes: null,
     productPrice: 0,
     distributorID: "0x0000000000000000000000000000000000000000",
+    inspectorID: "0x0000000000000000000000000000000000000000",
     retailerID: "0x0000000000000000000000000000000000000000",
     consumerID: "0x0000000000000000000000000000000000000000",
 
     init: async function () {
         App.readForm();
         /// Setup access to blockchain
-        return await;
-        App.initWeb3();
+        return await App.initWeb3();
     },
 
     readForm: function () {
@@ -40,6 +40,7 @@ App = {
         App.productNotes = $("#productNotes").val();
         App.productPrice = $("#productPrice").val();
         App.distributorID = $("#distributorID").val();
+        App.inspectorID = $("#distributorID").val();
         App.retailerID = $("#retailerID").val();
         App.consumerID = $("#consumerID").val();
 
@@ -55,6 +56,7 @@ App = {
             App.productNotes,
             App.productPrice,
             App.distributorID,
+            App.inspectorID,
             App.retailerID,
             App.consumerID
         );
@@ -67,8 +69,7 @@ App = {
             App.web3Provider = window.ethereum;
             try {
                 // Request account access
-                await;
-                window.ethereum.enable();
+                await indow.ethereum.enable();
             } catch (error) {
                 // User denied account access...
                 console.error("User denied account access")
@@ -137,44 +138,34 @@ App = {
 
         switch (processId) {
             case 1:
-                return await;
-                App.harvestItem(event);
+                return await App.harvestItem(event);
                 break;
             case 2:
-                return await;
-                App.processItem(event);
+                return await App.processItem(event);
                 break;
             case 3:
-                return await;
-                App.packItem(event);
+                return await App.packItem(event);
                 break;
             case 4:
-                return await;
-                App.sellItem(event);
+                return await App.sellItem(event);
                 break;
             case 5:
-                return await;
-                App.buyItem(event);
+                return await App.buyItem(event);
                 break;
             case 6:
-                return await;
-                App.shipItem(event);
+                return await App.shipItem(event);
                 break;
             case 7:
-                return await;
-                App.receiveItem(event);
+                return await App.receiveItem(event);
                 break;
             case 8:
-                return await;
-                App.purchaseItem(event);
+                return await App.purchaseItem(event);
                 break;
             case 9:
-                return await;
-                App.fetchItemBufferOne(event);
+                return await App.fetchItemBufferOne(event);
                 break;
             case 10:
-                return await;
-                App.fetchItemBufferTwo(event);
+                return await App.fetchItemBufferTwo(event);
                 break;
         }
     },
