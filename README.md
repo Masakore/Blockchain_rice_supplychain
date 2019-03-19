@@ -3,12 +3,17 @@ For Udacity blockchain developer course supplychain project
 
 This repository containts an Ethereum DApp that demonstrates a Supply Chain flow between a Seller and Buyer. The user story is similar to any commonly used supply chain process. A Seller can add items to the inventory system stored in the blockchain. A Buyer can purchase such items from the inventory system. Additionally a Seller can mark an item as Shipped, and similarly a Buyer can mark an item as Received.
 
+## UI
 The DApp User Interface when running should look like...
 
-![Product overview](images/product_overview.jpg?raw=true)
-![Farm details](images/farm_details.jpg?raw=true)
-![Product details](images/product_details.jpg?raw=true)
-![Transaction history](images/tx_history.jpg?raw=true)
+### Product overview
+![Product overview](images/product_overview.png?raw=true)  
+### Farm details
+![Farm details](images/farm_details.png?raw=true)  
+### Product details
+![Product details](images/product_details.png?raw=true)  
+### Transaction history
+![Transaction history](images/tx_history.png?raw=true)  
 
 ## Design
 ### Activity diagram
@@ -42,13 +47,12 @@ A step by step series of examples that tell you have to get a development env ru
 Clone this repository:
 
 ```
-git clone https://github.com/Masakore/Blockchain_rice_supplychain/tree/master
+git clone https://github.com/Masakore/Blockchain_rice_supplychain.git
 ```
 
-Change directory to ```Blockchain_rice_supplychain``` folder and install all requisite npm packages (as listed in ```package.json```):
+Install all requisite npm packages (as listed in ```package.json```):
 
 ```
-cd Blockchain_rice_supplychain
 npm install
 ```
 
