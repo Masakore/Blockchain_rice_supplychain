@@ -42,14 +42,13 @@ A step by step series of examples that tell you have to get a development env ru
 Clone this repository:
 
 ```
-git clone https://github.com/udacity/nd1309/tree/master/course-5/project-6
-https://github.com/Masakore/Blockchain_rice_supplychain
+git clone https://github.com/Masakore/Blockchain_rice_supplychain/tree/master
 ```
 
-Change directory to ```project-6``` folder and install all requisite npm packages (as listed in ```package.json```):
+Change directory to ```Blockchain_rice_supplychain``` folder and install all requisite npm packages (as listed in ```package.json```):
 
 ```
-cd project-6
+cd Blockchain_rice_supplychain
 npm install
 ```
 
