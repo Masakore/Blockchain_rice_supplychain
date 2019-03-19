@@ -10,7 +10,7 @@ There is no need to separately deploy library in this scenario.
  */
 // this is library: var Ownable = artifacts.require("../contracts/Core/Ownable.sol");
 
-var SupplyChain = artifacts.require("../contracts/Core/SupplyChain.sol");
+var SupplyChain = artifacts.require("../contracts/Base/SupplyChain.sol");
 
 module.exports = function(deployer) {
   deployer.deploy(FarmerRole);
