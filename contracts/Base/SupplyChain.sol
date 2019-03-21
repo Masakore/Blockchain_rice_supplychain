@@ -86,6 +86,16 @@ contract SupplyChain is Farmer, Inspector, Distributor, Retailer, Consumer, Owna
 		_;
 	}
 
+	modifier onlyRetailer() {
+		isDistributor(msg.sender);
+		_;
+	}
+
+	modifier onlyConsumer() {
+		isDistributor(msg.sender);
+		_;
+	}
+
   modifier paidEnough(uint _price) {
     require(msg.value >= _price);
     _;
@@ -239,6 +249,7 @@ contract SupplyChain is Farmer, Inspector, Distributor, Retailer, Consumer, Owna
   }
 
 	function receiveItem(uint _upc) public
+	onlyRetailer
 	shipped(_upc)
 	{
 		items[_upc].retailerID = msg.sender;
@@ -247,6 +258,7 @@ contract SupplyChain is Farmer, Inspector, Distributor, Retailer, Consumer, Owna
 	}
 
 	function purchaseItem(uint _upc) public
+	onlyConsumer
 	received(_upc)
 	{
 		transferOwnership(msg.sender);
