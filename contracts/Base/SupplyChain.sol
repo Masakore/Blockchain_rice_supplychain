@@ -87,12 +87,12 @@ contract SupplyChain is Farmer, Inspector, Distributor, Retailer, Consumer, Owna
 	}
 
 	modifier onlyRetailer() {
-		isDistributor(msg.sender);
+		isRetailer(msg.sender);
 		_;
 	}
 
 	modifier onlyConsumer() {
-		isDistributor(msg.sender);
+		isConsumer(msg.sender);
 		_;
 	}
 
